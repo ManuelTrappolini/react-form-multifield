@@ -4,7 +4,10 @@ import './App.css'
 
 const emptyPost = {
   title: "",
-  tags: "",
+  image: "",
+  content: "",
+  tags: [],
+  published: false,
 }
 
 function App() {
@@ -30,7 +33,7 @@ function App() {
       ...posts
     ])
 
-    setFormData(initialPosts)
+    setFormData(emptyPost)
   }
 
   function handleTrashPostClick(e) {
@@ -57,7 +60,9 @@ function App() {
       <div className="containter mt-3 ">
         <h1>Posts List</h1>
         <form onSubmit={handleFormSubmit}>
+
           <div className="input-group mb-3">
+
             <label htmlFor="post" className='farm-label m-3'>Post</label>
             <div className="input-group mb-3">
               <input type="text"
@@ -83,25 +88,36 @@ function App() {
                 placeholder="Recipient's image"
                 aria-label="Recipient's image"
                 aria-describedby="imagehelper"
-                value={formData.tags}
+                value={formData.image}
                 name='image'
                 id='image'
                 onChange={handleFormField}
               />
 
+              <textarea type="text" className="form-control"
+                placeholder="Recipient's content"
+                aria-label="Recipient's content"
+                aria-describedby="contenthelper"
+                value={formData.content}
+                name='content'
+                id='content'
+                onChange={handleFormField}
+              />
+
+
               <button className='btn btn-outline-secondary' type='submit'> Click ME</button>
             </div>
             <div className="form-check m-3">
               <input
-                id="available"
-                name='available'
+                id="published"
+                name='published'
                 type="checkbox"
                 className="form-check-input"
-                value={formData.available}
+                value={formData.published}
                 onChange={handleFormField}
 
               />
-              <label className="form-check-label" htmlFor=""> Available </label>
+              <label className="form-check-label" htmlFor=""> Published </label>
             </div>
           </div>
 
